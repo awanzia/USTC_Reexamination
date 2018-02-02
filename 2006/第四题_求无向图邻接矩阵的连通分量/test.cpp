@@ -1,7 +1,7 @@
 /*
- *2006ÄêµÚËÄÌâ£ºÇóÓÉÁÚ½Ó¾ØÕó´æ´¢µÄÎÞÏòÍ¼µÄÁ¬Í¨·ÖÁ¿
- *ÁÚ½Ó¾ØÕó´¢´æÔÚabc.inÎÄ¼þÖÐ
- *abc.inÄÚÈÝÈçÏÂ£º
+ *2006å¹´ç¬¬å››é¢˜ï¼šæ±‚ç”±é‚»æŽ¥çŸ©é˜µå­˜å‚¨çš„æ— å‘å›¾çš„è¿žé€šåˆ†é‡
+ *é‚»æŽ¥çŸ©é˜µå‚¨å­˜åœ¨abc.inæ–‡ä»¶ä¸­
+ *abc.inå†…å®¹å¦‚ä¸‹ï¼š
  *ABCDEFGH
  *0 1 0 0 0 0 1 1
  *1 0 0 0 0 0 0 1
@@ -12,7 +12,7 @@
  *1 0 0 0 0 0 0 1
  *1 1 0 0 0 0 1 0
  *
- *ÔÚxyz.outÎÄ¼þÖÐ±£´æÃ¿¸öÁ¬Í¨·ÖÁ¿
+ *åœ¨xyz.outæ–‡ä»¶ä¸­ä¿å­˜æ¯ä¸ªè¿žé€šåˆ†é‡
  */
 
 #include<stdio.h>
@@ -23,18 +23,18 @@ bool visit[MAXNUM];
 
 FILE *fp,*fpo;
 
-//¶¨ÒåGraph½á¹¹ÌåÀàÐÍ
+//å®šä¹‰Graphç»“æž„ä½“ç±»åž‹
 typedef struct{
-	char vexstr[MAXNUM];  //¶¥µãÊý×é
-	int adjMatrix[MAXNUM][MAXNUM];  //ÁÚ½Ó¾ØÕó
-	int vexnum;  //¶¥µãÊý
+	char vexstr[MAXNUM];  //é¡¶ç‚¹æ•°ç»„
+	int adjMatrix[MAXNUM][MAXNUM];  //é‚»æŽ¥çŸ©é˜µ
+	int vexnum;  //é¡¶ç‚¹æ•°
 }Graph;
 
 Graph g;
 
-void DFS( Graph *g , int u , int depth){  //u±íÊ¾µ±Ç°·ÃÎÊ¶¥µã
-	visit[u]=true;  //±ê¼Ç¶¥µãuÎªÒÑ·ÃÎÊ
-	fprintf( fpo , "%c" , g->vexstr[u] );  //¡¾Q¡¿ÎªÊ²Ã´ÔÚÕâÀï¾ÍÄÜ°ÑËùÓÐµÄÁ¬Í¨·ÖÁ¿Êä³ö
+void DFS( Graph *g , int u , int depth){  //uè¡¨ç¤ºå½“å‰è®¿é—®é¡¶ç‚¹
+	visit[u]=true;  //æ ‡è®°é¡¶ç‚¹uä¸ºå·²è®¿é—®
+	fprintf( fpo , "%c" , g->vexstr[u] );  
 	for( int v=0 ; v<g->vexnum ; v++ ){
 		if( visit[v]==false && g->adjMatrix[u][v]==1 ){
 			DFS(g,v,depth+1);
@@ -59,21 +59,21 @@ int main(){
 	}
 	fpo=fopen( "xyz.out" , "w" );
 	
-	//³õÊ¼»¯gµÄ¶¥µãÊý×é
+	//åˆå§‹åŒ–gçš„é¡¶ç‚¹æ•°ç»„
 	fscanf( fp , "%s" , g.vexstr );
 
-	//³õÊ¼»¯gµÄ¶¥µãÊý
+	//åˆå§‹åŒ–gçš„é¡¶ç‚¹æ•°
 	g.vexnum=strlen(g.vexstr); 
 	
 
-	//³õÊ¼»¯gµÄÁÚ½Ó¾ØÕó
+	//åˆå§‹åŒ–gçš„é‚»æŽ¥çŸ©é˜µ
 	for( int i=0 ; i<g.vexnum ; i++ ){
 		for( int j=0 ; j<g.vexnum ; j++ ){
 			fscanf( fp , "%d" , &g.adjMatrix[i][j] );
 		}
 	}
 
-	//³õÊ¼»¯visitÊý×é
+	//åˆå§‹åŒ–visitæ•°ç»„
 	for( i=0 ; i<g.vexnum ; i++ ){
 		visit[i]=false;
 	}
